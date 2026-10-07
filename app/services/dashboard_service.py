@@ -10,7 +10,6 @@ from app.models.booking import Booking
 from app.models.career import JobApplication
 from app.models.contact import ContactMessage
 from app.models.enums import BookingStatus
-from app.models.equipment import Equipment, EquipmentRental
 from app.models.service import Service
 
 
@@ -25,8 +24,6 @@ class DashboardService:
             approved_bookings,
             completed_bookings,
             total_services,
-            total_equipment,
-            total_rentals,
             total_applications,
             new_contacts,
             total_blogs,
@@ -36,8 +33,6 @@ class DashboardService:
             await Booking.find({"status": BookingStatus.APPROVED}).count(),
             await Booking.find({"status": BookingStatus.COMPLETED}).count(),
             await Service.find({}).count(),
-            await Equipment.find({}).count(),
-            await EquipmentRental.find({}).count(),
             await JobApplication.find({}).count(),
             await ContactMessage.find({"status": "new"}).count(),
             await Blog.find({}).count(),
@@ -50,8 +45,6 @@ class DashboardService:
                 "completed": completed_bookings,
             },
             "services": total_services,
-            "equipment": total_equipment,
-            "rentals": total_rentals,
             "applications": total_applications,
             "new_contacts": new_contacts,
             "blogs": total_blogs,

@@ -38,16 +38,6 @@ class BookingStatus(StrEnum):
     CANCELLED = "cancelled"
 
 
-class RentalStatus(StrEnum):
-    """Lifecycle of an equipment rental request."""
-
-    PENDING = "pending"
-    APPROVED = "approved"
-    REJECTED = "rejected"
-    ACTIVE = "active"
-    RETURNED = "returned"
-    CANCELLED = "cancelled"
-
 
 class ApplicationStatus(StrEnum):
     """Lifecycle of a job application."""

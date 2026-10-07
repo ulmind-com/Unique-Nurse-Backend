@@ -28,10 +28,10 @@ from app.middleware import RequestContextMiddleware, SecurityHeadersMiddleware
 logger = get_logger(__name__)
 
 _DESCRIPTION = """
-Backend API for **Nupun Home Health Care Services**.
+Backend API for **Unique Nurse and Aya Services**.
 
 A production-grade, API-only backend powering the admin panel and the public
-website: services, bookings, medical equipment rentals, careers, blogs, videos,
+website: services, bookings, careers, blogs, videos,
 testimonials, FAQs, contact, settings/SEO, uploads, notifications and more.
 
 All responses follow a consistent envelope::
@@ -97,7 +97,7 @@ def create_app() -> FastAPI:
     async def root() -> dict:
         return success_response(
             data={"name": settings.APP_NAME, "version": __version__, "docs": "/docs"},
-            message="Nupun Home Health Care Services API is running",
+            message="Unique Nurse and Aya Services API is running",
         )
 
     @app.get("/health", tags=["Health"], summary="Health check")

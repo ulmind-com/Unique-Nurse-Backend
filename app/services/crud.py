@@ -1,7 +1,7 @@
 """Generic CRUD service used by content modules.
 
 Encapsulates the create/read/update/delete workflow shared by services,
-blogs, equipment, videos, testimonials, FAQs, careers, etc. — including slug
+blogs, videos, testimonials, FAQs, careers, etc. — including slug
 generation, activity logging and pagination — so each module's router stays a
 thin, declarative layer (DRY + SRP).
 """

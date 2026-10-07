@@ -24,7 +24,6 @@ RESOURCES = [
     "categories",
     "bookings",
     "patients",
-    "equipment",
     "rentals",
     "careers",
     "applications",

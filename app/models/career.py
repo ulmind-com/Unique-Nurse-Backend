@@ -13,7 +13,7 @@ from app.models.enums import ApplicationStatus, ContentStatus, JobType
 
 
 class JobCategory(TimestampedDocument):
-    """A category grouping job postings (e.g. Nursing, Physiotherapy)."""
+    """A category grouping job postings (e.g. Nursing, Aya, Housekeeping)."""
 
     name: str
     slug: Indexed(str, unique=True)  # type: ignore[valid-type]

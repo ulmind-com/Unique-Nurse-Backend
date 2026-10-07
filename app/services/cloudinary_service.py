@@ -43,7 +43,7 @@ class CloudinaryService:
     async def upload_image(
         self,
         file_bytes: bytes,
-        folder: str = "nupun/images",
+        folder: str = "unique/images",
         public_id: Optional[str] = None,
     ) -> ImageAsset:
         """Upload an image with automatic format/quality optimisation."""
@@ -66,7 +66,7 @@ class CloudinaryService:
     async def upload_file(
         self,
         file_bytes: bytes,
-        folder: str = "nupun/files",
+        folder: str = "unique/files",
         resource_type: str = "auto",
         public_id: Optional[str] = None,
         original_filename: Optional[str] = None,

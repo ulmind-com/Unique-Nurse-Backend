@@ -1,1 +1,0 @@
-# Infection Control API package

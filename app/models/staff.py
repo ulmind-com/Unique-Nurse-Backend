@@ -11,11 +11,11 @@ from app.models.base import ImageAsset, TimestampedDocument
 
 
 class StaffMember(TimestampedDocument):
-    """A staff member (nurse, attendant, physiotherapist, etc.)."""
+    """A staff member (nurse, Aya, patient attendant, maid, etc.)."""
 
     name: str
     photo: Optional[ImageAsset] = None
-    category: str  # e.g. "Health Attendant", "Nurse", "Physiotherapist", "Nanny", "Japa"
+    category: str  # e.g. "Patient Attendant", "Aya", "Nurse", "Baby Care", "Maid"
     rating: float = Field(default=5.0, ge=1.0, le=5.0)
     service_label: str = ""  # e.g. "24 hours Health Attendant"
     price_7_days: Optional[int] = None
