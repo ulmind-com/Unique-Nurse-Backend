@@ -82,11 +82,30 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins(self) -> List[str]:
-        """Return CORS origins parsed from the comma-separated string."""
+        """Return CORS origins parsed from the comma-separated string.
+
+        Production front-ends are always allowed so the deployed admin and
+        website keep working even if the ``CORS_ORIGINS`` env var is missing
+        or out of date. Credentialed requests can't use a ``*`` wildcard, so
+        an explicit list is always returned.
+        """
+        # Baked-in allowlist: live domains + local dev origins.
+        origins: List[str] = [
+            "https://admin.uniquenursing.in",
+            "https://uniquenursing.in",
+            "https://www.uniquenursing.in",
+            "http://localhost:3000",
+            "http://localhost:5173",
+            "http://localhost:8080",
+        ]
         raw = self.CORS_ORIGINS.strip()
-        if not raw:
-            return ["*"]
-        return [origin.strip() for origin in raw.split(",") if origin.strip()]
+        if raw and raw != "*":
+            origins.extend(
+                origin.strip() for origin in raw.split(",") if origin.strip()
+            )
+        # De-duplicate while preserving order.
+        seen: set[str] = set()
+        return [o for o in origins if not (o in seen or seen.add(o))]
 
     @property
     def is_production(self) -> bool:
