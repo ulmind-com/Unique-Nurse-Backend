@@ -52,16 +52,12 @@ class Settings(BaseSettings):
     CLOUDINARY_API_SECRET: str = ""
     CLOUDINARY_URL: str = ""
 
-    # ---- Email (SMTP) ----
-    SMTP_HOST: str = ""
-    SMTP_PORT: int = 587
-    SMTP_USER: str = ""
-    SMTP_PASSWORD: str = ""
-    SMTP_FROM_EMAIL: str = ""
-    SMTP_FROM_NAME: str = "Unique Nurse and Aya Services"
-    SMTP_TLS: bool = True
-    SMTP_SSL: bool = False
+    # ---- Email (Resend) ----
+    RESEND_API_KEY: str = ""
+    EMAIL_FROM: str = "Unique Nurse and Aya Services <onboarding@resend.dev>"
+    EMAIL_FROM_NAME: str = "Unique Nurse and Aya Services"
     ADMIN_NOTIFICATION_EMAIL: str = ""
+
 
     # ---- CORS ----
     # Comma-separated string in the environment; use ``cors_origins`` for the
@@ -114,8 +110,8 @@ class Settings(BaseSettings):
 
     @property
     def email_enabled(self) -> bool:
-        """Return ``True`` only when SMTP is fully configured."""
-        return bool(self.SMTP_HOST and self.SMTP_USER and self.SMTP_PASSWORD)
+        """Return ``True`` only when Resend API key is configured."""
+        return bool(self.RESEND_API_KEY)
 
     @property
     def cloudinary_enabled(self) -> bool:

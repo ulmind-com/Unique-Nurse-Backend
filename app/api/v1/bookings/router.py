@@ -44,6 +44,7 @@ async def create_booking(
                 "service": booking.service_name,
                 "reference": booking.reference,
                 "date": str(booking.preferred_date),
+                "city": getattr(booking, "city", ""),
             },
         )
     return item_response(BookingResponse, booking, "Booking submitted successfully")
