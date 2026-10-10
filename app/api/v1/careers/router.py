@@ -180,6 +180,19 @@ async def create_application(
         email,
         {"name": full_name, "job": job_title, "reference": application.reference},
     )
+    # Notify admin of the new application (non-blocking).
+    background_tasks.add_task(
+        email_service.send_admin_notification,
+        f"New Job Application — {application.reference}",
+        f"<p><b>{application.full_name}</b> applied for <b>{application.job_title}</b>.</p>"
+        f"<p>Reference: <b>{application.reference}</b><br/>"
+        f"Phone: {application.phone}<br/>"
+        f"Email: {application.email}<br/>"
+        f"Experience: {application.experience or 'N/A'}<br/>"
+        f"Qualification: {application.qualification or 'N/A'}<br/>"
+        f"Preferred Location: {application.preferred_location or 'N/A'}</p>"
+        f"<blockquote>{application.cover_letter or 'No cover letter'}</blockquote>",
+    )
     return item_response(ApplicationResponse, application, "Application submitted")
 
 

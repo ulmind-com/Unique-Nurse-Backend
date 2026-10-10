@@ -36,16 +36,12 @@ services:
         sync: false
       - key: CLOUDINARY_API_SECRET
         sync: false
-      - key: SMTP_HOST
+      - key: RESEND_API_KEY
         sync: false
-      - key: SMTP_PORT
-        value: "587"
-      - key: SMTP_USER
+      - key: EMAIL_FROM
         sync: false
-      - key: SMTP_PASSWORD
-        sync: false
-      - key: SMTP_FROM_EMAIL
-        sync: false
+      - key: EMAIL_FROM_NAME
+        value: "Unique Nurse and Aya Services"
       - key: ADMIN_NOTIFICATION_EMAIL
         sync: false
       - key: CORS_ORIGINS

@@ -47,6 +47,19 @@ async def create_booking(
                 "city": getattr(booking, "city", ""),
             },
         )
+    # Notify admin of the new booking (full details, non-blocking).
+    background_tasks.add_task(
+        email_service.send_admin_notification,
+        f"New Booking — {booking.reference}",
+        f"<p><b>{booking.patient_name}</b> submitted a booking.</p>"
+        f"<p>Reference: <b>{booking.reference}</b><br/>"
+        f"Service: {booking.service_name}<br/>"
+        f"Preferred Date: {booking.preferred_date}<br/>"
+        f"Phone: {booking.contact_phone}<br/>"
+        f"Email: {booking.contact_email or 'N/A'}<br/>"
+        f"Address: {booking.address or 'N/A'}, {getattr(booking, 'city', '') or 'N/A'}</p>"
+        f"<blockquote>{booking.message or booking.medical_notes or 'No additional message'}</blockquote>",
+    )
     return item_response(BookingResponse, booking, "Booking submitted successfully")
 
 
