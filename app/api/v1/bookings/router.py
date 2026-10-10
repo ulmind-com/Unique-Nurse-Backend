@@ -58,7 +58,7 @@ async def create_booking(
         f"Phone: {booking.contact_phone}<br/>"
         f"Email: {booking.contact_email or 'N/A'}<br/>"
         f"Address: {booking.address or 'N/A'}, {getattr(booking, 'city', '') or 'N/A'}</p>"
-        f"<blockquote>{booking.message or booking.medical_notes or 'No additional message'}</blockquote>",
+        f"<blockquote>{booking.message or booking.care_required or 'No additional message'}</blockquote>",
     )
     return item_response(BookingResponse, booking, "Booking submitted successfully")
 
