@@ -1,6 +1,9 @@
 """Careers endpoints: job categories, jobs and applications (with resume upload)."""
 
-from __future__ import annotations
+# NOTE: do not add `from __future__ import annotations` here. With PEP 563
+# stringized annotations, slowapi's @limiter.limit wrapper prevents FastAPI from
+# resolving the `BackgroundTasks` param, which then 422s as a missing query
+# field on POST /applications.
 
 from typing import Optional
 
